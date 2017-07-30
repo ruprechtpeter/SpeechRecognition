@@ -57,6 +57,25 @@ namespace SpeechRecognition
 			}
 		}
 		
+		public partial class Id
+		{
+			
+			// aapt resource value: 0x7f050001
+			public const int btn_speech = 2131034113;
+			
+			// aapt resource value: 0x7f050000
+			public const int tv_text = 2131034112;
+			
+			static Id()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Id()
+			{
+			}
+		}
+		
 		public partial class Layout
 		{
 			
@@ -81,6 +100,24 @@ namespace SpeechRecognition
 			
 			// aapt resource value: 0x7f040000
 			public const int Hello = 2130968576;
+			
+			// aapt resource value: 0x7f040006
+			public const int end_recording = 2130968582;
+			
+			// aapt resource value: 0x7f040002
+			public const int messageSpeakNow = 2130968578;
+			
+			// aapt resource value: 0x7f040003
+			public const int no_microphone = 2130968579;
+			
+			// aapt resource value: 0x7f040007
+			public const int no_speech_was_recognised = 2130968583;
+			
+			// aapt resource value: 0x7f040004
+			public const int please_speak = 2130968580;
+			
+			// aapt resource value: 0x7f040005
+			public const int start_recording = 2130968581;
 			
 			static String()
 			{
