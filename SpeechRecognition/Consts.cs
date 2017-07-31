@@ -14,6 +14,7 @@ namespace SpeechRecognition
 {
     class Consts
     {
+        public static readonly string TAG = "SpeechRecognition";
         public static readonly string[] patterns = { "camera", "kamera", "photo", "foto", "fotó", "fénykép", "picture" };
     }
 }
