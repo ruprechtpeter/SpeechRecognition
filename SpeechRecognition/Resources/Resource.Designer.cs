@@ -60,14 +60,11 @@ namespace SpeechRecognition
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050001
-			public const int btn_speech = 2131034113;
-			
-			// aapt resource value: 0x7f050002
-			public const int iv_image = 2131034114;
-			
 			// aapt resource value: 0x7f050000
 			public const int tv_text = 2131034112;
+			
+			// aapt resource value: 0x7f050001
+			public const int wv_webview = 2131034113;
 			
 			static Id()
 			{
@@ -84,6 +81,9 @@ namespace SpeechRecognition
 			
 			// aapt resource value: 0x7f030000
 			public const int Main = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int WebView = 2130903041;
 			
 			static Layout()
 			{

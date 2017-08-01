@@ -16,5 +16,8 @@ namespace SpeechRecognition
     {
         public static readonly string TAG = "SpeechRecognition";
         public static readonly string[] patterns = { "camera", "kamera", "photo", "foto", "fotó", "fénykép", "picture" };
+
+        public static readonly string BUNDLE_SPEECH = "Speech";
+        public static readonly string BUNDLE_IMAGE = "Image";
     }
 }
