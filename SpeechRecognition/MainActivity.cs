@@ -90,7 +90,14 @@ namespace SpeechRecognition
                 voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
                 voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
                 voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
-                StartActivityForResult(voiceIntent, Consts.VOICE_REQUEST);
+                try
+                {
+                    StartActivityForResult(voiceIntent, Consts.VOICE_REQUEST);
+                } catch (ActivityNotFoundException e)
+                {
+                    Toast.MakeText(this, )
+                }
+                
             }
         }
 
