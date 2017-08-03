@@ -95,7 +95,7 @@ namespace SpeechRecognition
                     StartActivityForResult(voiceIntent, Consts.VOICE_REQUEST);
                 } catch (ActivityNotFoundException e)
                 {
-                    Toast.MakeText(this, )
+                    Toast.MakeText(this, Resource.String.noSpeechRecognition, ToastLength.Long).Show();
                 }
                 
             }
