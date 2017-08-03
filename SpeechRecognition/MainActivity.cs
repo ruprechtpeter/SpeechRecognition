@@ -24,12 +24,8 @@ namespace SpeechRecognition
     public class MainActivity : Activity
     {
         private static readonly string STATE_SPEECH = "StateSpeech";
-        private static readonly string STATE_IMAGE = "StateImage";
 
         private bool isRecording = false;
-        private readonly int VOICE = 10;
-        private readonly int PICTURE = 20;
-        private readonly int WEBVIEW = 30;
         private TextView tv_text;
         private string recognizedText = "";
 
@@ -94,7 +90,7 @@ namespace SpeechRecognition
                 voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
                 voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
                 voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
-                StartActivityForResult(voiceIntent, VOICE);
+                StartActivityForResult(voiceIntent, Consts.VOICE_REQUEST);
             }
         }
 
@@ -102,17 +98,17 @@ namespace SpeechRecognition
         {
             base.OnActivityResult(requestCode, resultVal, data);
 
-            if (requestCode == VOICE)
+            if (requestCode == Consts.VOICE_REQUEST)
             {
                 VoiceActivityResult(resultVal, data);
             }
 
-            if (requestCode == PICTURE)
+            if (requestCode == Consts.PICTURE_REQUEST)
             {
                 CameraActivityResult(resultVal, data);
             }
 
-            if (requestCode == WEBVIEW)
+            if (requestCode == Consts.WEBVIEW_REQUEST)
             {
                 StartSpeechrecognition();
             }
@@ -153,7 +149,7 @@ namespace SpeechRecognition
                 Intent intent = new Intent(MediaStore.ActionImageCapture);
                 App._file = new File(App._dir, String.Format("Pic_Speech_{0}.jpg", Guid.NewGuid()));
                 intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(App._file));
-                StartActivityForResult(intent, PICTURE);
+                StartActivityForResult(intent, Consts.PICTURE_REQUEST);
             }
         }
 
@@ -175,7 +171,7 @@ namespace SpeechRecognition
             intent.PutExtra(Consts.BUNDLE_SPEECH, tv_text.Text);
             intent.PutExtra(Consts.BUNDLE_IMAGE, App._file.AbsolutePath.ToString());
 
-            StartActivityForResult(intent, WEBVIEW);
+            StartActivityForResult(intent, Consts.WEBVIEW_REQUEST);
         }
 
 

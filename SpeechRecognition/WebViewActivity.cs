@@ -25,13 +25,14 @@ namespace SpeechRecognition
         private String image;
         private int imageWidth;
 
-        //TODO: Webview image size
         private String html = @"
             <html>
                 <body>
                     <div><p>Recognized speech: [SPEECH]</p><p>Captured image:</p></div>
                     <div><img width=""[WIDTH]"" style=""transform: rotate(90deg); -moz-transform: rotate(90deg); -webkit-transform: rotate(90deg);"" alt=""Not available"" class=""center_top_img"" src=""file://[IMAGE]""></div>
-                    <div><button type=""button"" onClick=""JSRestart.Restart()"">Restart</button></div>";
+                    <div><button type=""button"" onClick=""JSRestart.Restart()"">Restart</button></div>
+                </body>
+            </html>";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -59,7 +60,6 @@ namespace SpeechRecognition
         {
             speech = Intent.GetStringExtra(Consts.BUNDLE_SPEECH) ?? "";
             image = Intent.GetStringExtra(Consts.BUNDLE_IMAGE) ?? "";
-
         }
 
         private void CalculateImageSize()
