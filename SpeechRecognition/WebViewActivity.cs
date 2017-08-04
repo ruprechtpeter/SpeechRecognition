@@ -17,20 +17,18 @@ using Android.Content.Res;
 
 namespace SpeechRecognition
 {
-    [Activity(Label = "WebViewActivity")]
+    [Activity(Label = "Speech recognition - WebView")]
     public class WebViewActivity : Activity
     {
         private WebView wv_webview;
         private string speech;
         private String image;
-        private int imageWidth;
-
         private String html = @"
             <html>
                 <body>
-                    <div><p>Recognized speech: [SPEECH]</p><p>Captured image:</p></div>
-                    <div><img width=""[WIDTH]"" style=""transform: rotate(90deg); -moz-transform: rotate(90deg); -webkit-transform: rotate(90deg);"" alt=""Not available"" class=""center_top_img"" src=""file://[IMAGE]""></div>
                     <div><button type=""button"" onClick=""JSRestart.Restart()"">Restart</button></div>
+                    <div><p>Recognized speech: [SPEECH]</p></div><div><p>Captured image:</p></div>
+                    <div><img width = ""[WIDTH]"" alt=""Not available"" class=""center_top_img"" src=""file://[IMAGE]""></div>
                 </body>
             </html>";
 
@@ -42,7 +40,7 @@ namespace SpeechRecognition
 
             Init();
 
-            wv_webview.LoadDataWithBaseURL("", replaceStringInHtml(), "text/html", "utf-8", "");
+            LoadPage();
         }
 
         private void Init()
@@ -52,8 +50,6 @@ namespace SpeechRecognition
             wv_webview.AddJavascriptInterface(new JSRestartInterface(this), "JSRestart");
 
             CollectExtras();
-
-            CalculateImageSize();
         }
 
         private void CollectExtras()
@@ -62,22 +58,21 @@ namespace SpeechRecognition
             image = Intent.GetStringExtra(Consts.BUNDLE_IMAGE) ?? "";
         }
 
-        private void CalculateImageSize()
+        private void LoadPage()
         {
-            imageWidth = Resources.DisplayMetrics.WidthPixels / 4;
-
-            //TODO: valahogy az orientation alapján kellene egy max szélességet megadni, és ehhez igazítani a magasságot
+            string replacedHtml = ReplaceStringInHtml();
+            wv_webview.LoadDataWithBaseURL("", replacedHtml, "text/html", "utf-8", "");
         }
 
-        private string replaceStringInHtml()
+        private string ReplaceStringInHtml()
         {
+            int imageWidth = Resources.DisplayMetrics.WidthPixels / 4;
             StringBuilder builder = new StringBuilder(html);
             builder.Replace("[SPEECH]", speech);
             builder.Replace("[IMAGE]", image);
             builder.Replace("[WIDTH]", imageWidth.ToString());
             return builder.ToString();
         }
-
     }
 
     class JSRestartInterface : Java.Lang.Object
