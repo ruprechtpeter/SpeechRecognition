@@ -113,15 +113,7 @@ namespace SpeechRecognition
 
             if (requestCode == Consts.VOICE_REQUEST)
             {
-                speechRecognition.ActivityResult(requestCode, resultVal, data);
-                tv_text.Text = speechRecognition.recognizedText;
-
-                SpeechAnalysis analysis = new SpeechAnalysis();
-                if (analysis.SpeechIsMatchPattern(speechRecognition.recognizedText.ToLower()))
-                {
-                    StartCamera();
-                }
-                //VoiceActivityResult(resultVal, data);
+                VoiceActivityResult(requestCode, resultVal, data);
             }
 
             if (requestCode == Consts.PICTURE_REQUEST)
@@ -135,29 +127,16 @@ namespace SpeechRecognition
             }
         }
 
-        private void VoiceActivityResult(Result resultVal, Intent data)
+        private void VoiceActivityResult(int requestCode, Result resultVal, Intent data)
         {
-            if (resultVal == Result.Ok)
+            speechRecognition.ActivityResult(requestCode, resultVal, data);
+            tv_text.Text = speechRecognition.recognizedText;
+
+            SpeechAnalysis analysis = new SpeechAnalysis();
+            if (analysis.SpeechIsMatchPattern(speechRecognition.recognizedText.ToLower()))
             {
-                var matches = data.GetStringArrayListExtra(RecognizerIntent.ExtraResults);
-                if (matches.Count != 0)
-                {
-                    recognizedText = matches[0];
-
-                    if (recognizedText.Length > 500)
-                        recognizedText = recognizedText.Substring(0, 500);
-
-                    tv_text.Text = recognizedText;
-
-                    if (CheckPatterns(recognizedText.ToLower()))
-                    {
-                        StartCamera();
-                    }
-                }
-                else
-                    tv_text.Text = GetString(Resource.String.no_speech_was_recognised);
-
-                isRecording = !isRecording;
+                CameraAdapter camera = new CameraAdapter(this);
+                camera.StartCamera();
             }
         }
 
