@@ -58,8 +58,10 @@
     <Compile Include="CameraAdapter.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="ImageManipulation.cs" />
+    <Compile Include="IOManager.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="CapturedImage.cs" />
+    <Compile Include="RequirementManager.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpeechAnalysis.cs" />

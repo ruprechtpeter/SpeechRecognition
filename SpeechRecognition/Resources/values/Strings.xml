@@ -3,8 +3,10 @@
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">Speech Recognition</string>
 
+    <string name="no_all_requirement">Your device hasn’t microphone or camera</string>
     <string name="noSpeechRecognition">Your device doesn’t support Speech to Text</string>
     <string name="no_microphone">No microphone present</string>
+    <string name="no_camera">No camera application available</string>
     <string name="please_speak">Please, speak into your microphone</string>
     <string name="no_speech_was_recognised">Sorry, no speech was recognized, try again</string>
 </resources>

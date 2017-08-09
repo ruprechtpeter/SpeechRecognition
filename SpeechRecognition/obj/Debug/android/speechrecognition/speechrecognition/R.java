@@ -24,9 +24,11 @@ public final class R {
     public static final class string {
         public static final int ApplicationName=0x7f040001;
         public static final int Hello=0x7f040000;
-        public static final int noSpeechRecognition=0x7f040002;
-        public static final int no_microphone=0x7f040003;
-        public static final int no_speech_was_recognised=0x7f040005;
-        public static final int please_speak=0x7f040004;
+        public static final int noSpeechRecognition=0x7f040003;
+        public static final int no_all_requirement=0x7f040002;
+        public static final int no_camera=0x7f040005;
+        public static final int no_microphone=0x7f040004;
+        public static final int no_speech_was_recognised=0x7f040007;
+        public static final int please_speak=0x7f040006;
     }
 }
