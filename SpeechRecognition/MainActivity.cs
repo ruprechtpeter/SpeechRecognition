@@ -66,17 +66,17 @@ namespace SpeechRecognition
         {
             base.OnActivityResult(requestCode, resultVal, data);
 
-            if (requestCode == Consts.VOICE_REQUEST)
+            if (requestCode == RequestCodeConsts.VOICE_REQUEST)
             {
                 VoiceActivityResult(resultVal, data);
             }
 
-            if (requestCode == Consts.PICTURE_REQUEST)
+            if (requestCode == RequestCodeConsts.PICTURE_REQUEST)
             {
                 CameraActivityResult(resultVal, data);
             }
 
-            if (requestCode == Consts.WEBVIEW_REQUEST)
+            if (requestCode == RequestCodeConsts.WEBVIEW_REQUEST)
             {
                 speechRecognition.StartActivity();
             }

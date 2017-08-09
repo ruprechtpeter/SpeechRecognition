@@ -4,7 +4,7 @@
     {
         public bool SpeechIsMatchPattern(string speech)
         {
-            foreach (string pattern in Consts.patterns)
+            foreach (string pattern in ParamConsts.patterns)
             {
                 if (speech.Contains(pattern))
                 {

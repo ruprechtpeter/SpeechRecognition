@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Widget;
 using Android.Provider;
+using Android.Util;
 
 namespace SpeechRecognition
 {
@@ -22,11 +23,12 @@ namespace SpeechRecognition
             intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(CapturedImage._file));
             try
             {
-                activity.StartActivityForResult(intent, Consts.PICTURE_REQUEST);
+                activity.StartActivityForResult(intent, RequestCodeConsts.PICTURE_REQUEST);
             }
             catch (ActivityNotFoundException e)
             {
                 Toast.MakeText(activity, Resource.String.no_camera, ToastLength.Long).Show();
+                Log.Error(ParamConsts.TAG, e.Message);
             }
         }
 

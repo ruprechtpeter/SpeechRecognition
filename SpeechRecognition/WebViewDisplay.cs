@@ -21,9 +21,9 @@ namespace SpeechRecognition
         public override void StartActivity()
         {
             Intent intent = new Intent(activity, typeof(WebViewActivity));
-            intent.PutExtra(Consts.BUNDLE_SPEECH, recognizedText);
-            intent.PutExtra(Consts.BUNDLE_IMAGE, CapturedImage._file.AbsolutePath.ToString());
-            activity.StartActivityForResult(intent, Consts.WEBVIEW_REQUEST);
+            intent.PutExtra(BundleCodeConsts.BUNDLE_SPEECH, recognizedText);
+            intent.PutExtra(BundleCodeConsts.BUNDLE_IMAGE, CapturedImage._file.AbsolutePath.ToString());
+            activity.StartActivityForResult(intent, RequestCodeConsts.WEBVIEW_REQUEST);
         }
 
         public override void ActivityResult(Result resultVal, Intent data)

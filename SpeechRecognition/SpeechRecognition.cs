@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.Widget;
 using Android.Speech;
+using Android.Util;
 
 namespace SpeechRecognition
 {
@@ -25,11 +26,12 @@ namespace SpeechRecognition
                 var voiceIntent = getIntent();
                 try
                 {
-                    activity.StartActivityForResult(voiceIntent, Consts.VOICE_REQUEST);
+                    activity.StartActivityForResult(voiceIntent, RequestCodeConsts.VOICE_REQUEST);
                 }
                 catch (ActivityNotFoundException e)
                 {
                     Toast.MakeText(activity, Resource.String.noSpeechRecognition, ToastLength.Long).Show();
+                    Log.Error(ParamConsts.TAG, e.Message);
                 }
             }
         }

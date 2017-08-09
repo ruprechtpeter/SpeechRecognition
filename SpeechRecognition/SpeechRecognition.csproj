@@ -55,12 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseActivityManager.cs" />
+    <Compile Include="BundleCodeConsts.cs" />
     <Compile Include="CameraAdapter.cs" />
-    <Compile Include="Consts.cs" />
+    <Compile Include="ParamConsts.cs" />
     <Compile Include="ImageManipulation.cs" />
     <Compile Include="IOManager.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="CapturedImage.cs" />
+    <Compile Include="RequestCodeConsts.cs" />
     <Compile Include="RequirementManager.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

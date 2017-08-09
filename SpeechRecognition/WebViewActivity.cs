@@ -46,8 +46,8 @@ namespace SpeechRecognition
 
         private void CollectExtras()
         {
-            speech = Intent.GetStringExtra(Consts.BUNDLE_SPEECH) ?? "";
-            image = Intent.GetStringExtra(Consts.BUNDLE_IMAGE) ?? "";
+            speech = Intent.GetStringExtra(BundleCodeConsts.BUNDLE_SPEECH) ?? "";
+            image = Intent.GetStringExtra(BundleCodeConsts.BUNDLE_IMAGE) ?? "";
         }
 
         private void LoadPage()
