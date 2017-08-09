@@ -115,6 +115,12 @@ namespace SpeechRecognition
             {
                 speechRecognition.ActivityResult(requestCode, resultVal, data);
                 tv_text.Text = speechRecognition.recognizedText;
+
+                SpeechAnalysis analysis = new SpeechAnalysis();
+                if (analysis.SpeechIsMatchPattern(speechRecognition.recognizedText.ToLower()))
+                {
+                    StartCamera();
+                }
                 //VoiceActivityResult(resultVal, data);
             }
 
