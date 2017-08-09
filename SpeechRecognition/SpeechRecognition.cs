@@ -17,7 +17,7 @@ using System.Resources;
 
 namespace SpeechRecognition
 {
-    public class SpeechRecognition
+    public class SpeechRecognition: BaseActivityManager
     {
         private bool isRecording = false;
         public string recognizedText = "";
@@ -28,18 +28,13 @@ namespace SpeechRecognition
             this.activity = activity;
         }
 
-        public void StartSpeechRecognition()
+        public override void StartActivity()
         {
+            recognizedText = "";
             isRecording = !isRecording;
             if (isRecording)
             {
-                var voiceIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
-                voiceIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
-                voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 1500);
-                voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 1500);
-                voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
-                voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
-                voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
+                var voiceIntent = getIntent();
                 try
                 {
                     activity.StartActivityForResult(voiceIntent, Consts.VOICE_REQUEST);
@@ -51,7 +46,7 @@ namespace SpeechRecognition
             }
         }
 
-        public void ActivityResult(int requestCode, Result resultVal, Intent data)
+        public override void ActivityResult(Result resultVal, Intent data)
         {
             if (resultVal == Result.Ok)
             {
@@ -70,6 +65,18 @@ namespace SpeechRecognition
 
                 isRecording = !isRecording;
             }
+        }
+
+        private Intent getIntent()
+        {
+            Intent intent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
+            intent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
+            intent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 1500);
+            intent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 1500);
+            intent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
+            intent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
+            intent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
+            return intent;
         }
     }
 }

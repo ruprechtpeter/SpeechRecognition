@@ -14,7 +14,7 @@ using Android.Content.PM;
 
 namespace SpeechRecognition
 {
-    public class CameraAdapter
+    public class CameraAdapter: BaseActivityManager
     {
         private Activity activity;
 
@@ -23,7 +23,7 @@ namespace SpeechRecognition
             this.activity = activity;
         }
 
-        public void StartCamera()
+        public override void StartActivity()
         {
             if (IsThereAnAppToTakePictures())
             {
@@ -32,9 +32,26 @@ namespace SpeechRecognition
                 Intent intent = new Intent(MediaStore.ActionImageCapture);
                 CapturedImage._file = new Java.IO.File(CapturedImage._dir, String.Format("Pic_{0}.jpg", Guid.NewGuid()));
                 intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(CapturedImage._file));
-                activity.StartActivityForResult(intent, Consts.PICTURE_REQUEST);
+                try
+                {
+                    activity.StartActivityForResult(intent, Consts.PICTURE_REQUEST);
+                }
+                catch (ActivityNotFoundException e)
+                {
+                    //TODO: nincs kamera string
+                    Toast.MakeText(activity, Resource.String.noSpeechRecognition, ToastLength.Long).Show();
+                }
             }
+        }
 
+        public override void ActivityResult(Result resultVal, Intent data)
+        {
+            if (resultVal == Result.Ok) {
+                Intent mediaScanIntent = new Intent(Intent.ActionMediaScannerScanFile);
+                Android.Net.Uri contentUri = Android.Net.Uri.FromFile(CapturedImage._file);
+                mediaScanIntent.SetData(contentUri);
+                activity.SendBroadcast(mediaScanIntent);
+            }
         }
 
         private void CreateDirectoryForPictures()

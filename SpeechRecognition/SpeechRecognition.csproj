@@ -54,8 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseActivityManager.cs" />
     <Compile Include="CameraAdapter.cs" />
     <Compile Include="Consts.cs" />
+    <Compile Include="ImageManipulation.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="CapturedImage.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="SpeechAnalysis.cs" />
     <Compile Include="SpeechRecognition.cs" />
     <Compile Include="WebViewActivity.cs" />
+    <Compile Include="WebViewDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />

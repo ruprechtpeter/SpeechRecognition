@@ -32,6 +32,8 @@ namespace SpeechRecognition
         private TextView tv_text;
         private string recognizedText = "";
         private SpeechRecognition speechRecognition;
+        private CameraAdapter cameraAdapter;
+        private WebViewDisplay webViewDisplay;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -41,7 +43,7 @@ namespace SpeechRecognition
 
             Init();
 
-            speechRecognition.StartSpeechRecognition();
+            speechRecognition.StartActivity();
             //StartSpeechrecognition();
         }
 
@@ -68,6 +70,8 @@ namespace SpeechRecognition
             CheckMicrophone();
 
             speechRecognition = new SpeechRecognition(this);
+            cameraAdapter = new CameraAdapter(this);
+            webViewDisplay = new WebViewDisplay(this);
         }
 
         private void CheckMicrophone()
@@ -113,7 +117,7 @@ namespace SpeechRecognition
 
             if (requestCode == Consts.VOICE_REQUEST)
             {
-                VoiceActivityResult(requestCode, resultVal, data);
+                VoiceActivityResult(resultVal, data);
             }
 
             if (requestCode == Consts.PICTURE_REQUEST)
@@ -127,16 +131,15 @@ namespace SpeechRecognition
             }
         }
 
-        private void VoiceActivityResult(int requestCode, Result resultVal, Intent data)
+        private void VoiceActivityResult(Result resultVal, Intent data)
         {
-            speechRecognition.ActivityResult(requestCode, resultVal, data);
+            speechRecognition.ActivityResult(resultVal, data);
             tv_text.Text = speechRecognition.recognizedText;
 
             SpeechAnalysis analysis = new SpeechAnalysis();
             if (analysis.SpeechIsMatchPattern(speechRecognition.recognizedText.ToLower()))
             {
-                CameraAdapter camera = new CameraAdapter(this);
-                camera.StartCamera();
+                cameraAdapter.StartActivity();
             }
         }
 
@@ -155,16 +158,16 @@ namespace SpeechRecognition
 
         private void CameraActivityResult(Result resultVal, Intent data)
         {
-            Intent mediaScanIntent = new Intent(Intent.ActionMediaScannerScanFile);
-            Android.Net.Uri contentUri = Android.Net.Uri.FromFile(App._file);
-            mediaScanIntent.SetData(contentUri);
-            SendBroadcast(mediaScanIntent);
+            cameraAdapter.ActivityResult(resultVal, data);
 
-            RotateImage();
+            if (resultVal == Result.Ok)
+            {
+                ImageManipulation.RotateImage();
 
-            GC.Collect();
+                GC.Collect();
 
-            StartWebViewActivity();
+                webViewDisplay.StartActivity(speechRecognition.recognizedText);
+            }
         }
 
         private void RotateImage()
@@ -207,7 +210,7 @@ namespace SpeechRecognition
         {
             Intent intent = new Intent(this, typeof(WebViewActivity));
             intent.PutExtra(Consts.BUNDLE_SPEECH, tv_text.Text);
-            intent.PutExtra(Consts.BUNDLE_IMAGE, App._file.AbsolutePath.ToString());
+            intent.PutExtra(Consts.BUNDLE_IMAGE, CapturedImage._file.AbsolutePath.ToString());
 
             StartActivityForResult(intent, Consts.WEBVIEW_REQUEST);
         }
