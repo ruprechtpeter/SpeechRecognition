@@ -31,6 +31,7 @@ namespace SpeechRecognition
         private bool isRecording = false;
         private TextView tv_text;
         private string recognizedText = "";
+        private SpeechRecognition speechRecognition;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -40,7 +41,8 @@ namespace SpeechRecognition
 
             Init();
 
-            StartSpeechrecognition();
+            speechRecognition.StartSpeechRecognition();
+            //StartSpeechrecognition();
         }
 
         protected override void OnSaveInstanceState(Bundle outState)
@@ -64,6 +66,8 @@ namespace SpeechRecognition
             tv_text = FindViewById<TextView>(Resource.Id.tv_text);
 
             CheckMicrophone();
+
+            speechRecognition = new SpeechRecognition(this);
         }
 
         private void CheckMicrophone()
@@ -109,7 +113,9 @@ namespace SpeechRecognition
 
             if (requestCode == Consts.VOICE_REQUEST)
             {
-                VoiceActivityResult(resultVal, data);
+                speechRecognition.ActivityResult(requestCode, resultVal, data);
+                tv_text.Text = speechRecognition.recognizedText;
+                //VoiceActivityResult(resultVal, data);
             }
 
             if (requestCode == Consts.PICTURE_REQUEST)
