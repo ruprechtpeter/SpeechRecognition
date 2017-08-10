@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.Webkit;
-using Java.IO;
 using Java.Interop;
-using Android.Graphics;
 using Android.Content.Res;
 
 namespace SpeechRecognition
@@ -54,8 +46,8 @@ namespace SpeechRecognition
 
         private void CollectExtras()
         {
-            speech = Intent.GetStringExtra(Consts.BUNDLE_SPEECH) ?? "";
-            image = Intent.GetStringExtra(Consts.BUNDLE_IMAGE) ?? "";
+            speech = Intent.GetStringExtra(BundleCodeConsts.BUNDLE_SPEECH) ?? "";
+            image = Intent.GetStringExtra(BundleCodeConsts.BUNDLE_IMAGE) ?? "";
         }
 
         private void LoadPage()

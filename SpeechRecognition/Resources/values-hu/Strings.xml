@@ -3,8 +3,10 @@
   <string name="Hello">Hello World, Click Me!</string>
   <string name="ApplicationName">Speech Recognition</string>
 
+  <string name="no_all_requirement">Az eszköz nem tartalmaz mikrofont vagy kamerát</string>
   <string name="noSpeechRecognition">A készüléked nem támogatja a hangfelismerés funkciót</string>
   <string name="no_microphone">A készülékben nem található mikrofon</string>
+  <string name="no_camera">A készülékben nem található kamera</string>
   <string name="please_speak">Kérlek, beszélj a mikrofonba</string>
   <string name="no_speech_was_recognised">Sajnálom, a beszéd nem volt felismerhető, próbáld újra</string>
 </resources>
