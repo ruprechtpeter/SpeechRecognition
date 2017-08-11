@@ -3,10 +3,10 @@ using Android.Content;
 
 namespace SpeechRecognition
 {
-    public abstract class BaseActivityManager
+    public interface BaseActivityManager
     {
-        public abstract void StartActivity();
+        void StartActivity();
 
-        public abstract void ActivityResult(Result resultVal, Intent data);
+        void ActivityResult(Result resultVal, Intent data);
     }
 }

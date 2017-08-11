@@ -16,7 +16,7 @@ namespace SpeechRecognition
             this.activity = activity;
         }
 
-        public override void StartActivity()
+        public void StartActivity()
         {
             Intent intent = new Intent(MediaStore.ActionImageCapture);
             CapturedImage._file = new Java.IO.File(CapturedImage._dir, String.Format("Pic_{0}.jpg", Guid.NewGuid()));
@@ -32,7 +32,7 @@ namespace SpeechRecognition
             }
         }
 
-        public override void ActivityResult(Result resultVal, Intent data)
+        public void ActivityResult(Result resultVal, Intent data)
         {
             if (resultVal == Result.Ok) {
                 Intent mediaScanIntent = new Intent(Intent.ActionMediaScannerScanFile);
