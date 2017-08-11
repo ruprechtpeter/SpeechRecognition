@@ -17,7 +17,7 @@ namespace SpeechRecognition
             this.activity = activity;
         }
 
-        public override void StartActivity()
+        public void StartActivity()
         {
             recognizedText = "";
             isRecording = !isRecording;
@@ -36,7 +36,7 @@ namespace SpeechRecognition
             }
         }
 
-        public override void ActivityResult(Result resultVal, Intent data)
+        public void ActivityResult(Result resultVal, Intent data)
         {
             if (resultVal == Result.Ok)
             {

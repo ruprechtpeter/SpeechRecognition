@@ -18,7 +18,7 @@ namespace SpeechRecognition
             this.recognizedText = recognizedText;
             StartActivity();
         }
-        public override void StartActivity()
+        public void StartActivity()
         {
             Intent intent = new Intent(activity, typeof(WebViewActivity));
             intent.PutExtra(BundleCodeConsts.BUNDLE_SPEECH, recognizedText);
@@ -26,7 +26,7 @@ namespace SpeechRecognition
             activity.StartActivityForResult(intent, RequestCodeConsts.WEBVIEW_REQUEST);
         }
 
-        public override void ActivityResult(Result resultVal, Intent data)
+        public void ActivityResult(Result resultVal, Intent data)
         {
         }
 
